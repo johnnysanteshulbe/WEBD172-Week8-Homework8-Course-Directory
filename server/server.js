@@ -11,26 +11,32 @@ app.use(cors());
 const courses = [
   {
     id: 1,
-    title: "Web Development 172",
-    department: "Web Development",
+    title: "Full Stack JavaScript",
+    department: "WEBD",
     units: 3,
   },
   {
     id: 2,
-    title: "Web Development 171",
-    department: "Web Development",
+    title: "Advanced JavaScript",
+    department: "WEBD",
     units: 3,
   },
   {
     id: 3,
-    title: "Advanced JavaScript 164",
-    department: "Web Development",
+    title: "Introduction to Databases",
+    department: "WEBD",
     units: 3,
   },
   {
     id: 4,
-    title: "UI/UX Design Fundamentals",
-    department: "Graphic Design",
+    title: "User Experience Design",
+    department: "WEBD",
+    units: 3,
+  },
+  {
+    id: 5,
+    title: "Web Accesssibility",
+    department: "WEBD",
     units: 3,
   },
 ];

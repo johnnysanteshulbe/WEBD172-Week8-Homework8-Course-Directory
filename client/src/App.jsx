@@ -1,23 +1,37 @@
 import React, { useState, useEffect } from "react";
-import CourseCard from "./components/CourseCard";
+import CourseCard from "./components/CourseCard.jsx";
 import "./App.css";
 
 function App() {
   const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    async function getCourses() {
+      try {
+        const response = await fetch("http://localhost:3000/api/courses");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setCourses(data);
+
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    }
+
+    getCourses();
+  }, []);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/courses")
-      .then((response) => response.json())
-      .then((data) => {
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching courses:", error);
-        setLoading(false);
-      });
-  }, []);
+    if (courses.length > 0) {
+      setLoading(false);
+    }
+  }, [courses]);
 
   return (
     <div className="App">
@@ -26,7 +40,7 @@ function App() {
       </header>
       <main>
         {loading ? (
-          <p>Loading courses...</p>
+          <p>courses loaded from our Express API.</p>
         ) : (
           <div className="course-list">
             {courses.map((course) => (
